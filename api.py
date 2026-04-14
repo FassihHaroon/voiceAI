@@ -2,6 +2,7 @@ import os
 from enum import Enum
 from fastapi.responses import RedirectResponse
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from supabase import create_client, Client
 from dotenv import load_dotenv
@@ -24,6 +25,15 @@ app = FastAPI(
     title="KFC Menu & Orders API",
     description="APIs to manage the KFC menu and customer orders via Supabase",
     version="2.0.0"
+)
+
+# Allow CORS for all origins (adjust `allow_origins` for stricter control)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # ─────────────────────────────────────────────
