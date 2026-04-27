@@ -82,7 +82,7 @@ CREATE TABLE dishes (
     tag             VARCHAR(100),   -- e.g. "Best Seller", "Premium"
     status          SMALLINT      NOT NULL DEFAULT 1,
     availability    SMALLINT      NOT NULL DEFAULT 1
-);
+)
 
 -- New Arrivals
 INSERT INTO dishes VALUES (1910616, 63928, 90068, 'Khara Desi Kyo (Ghee)', 'Savor the authentic taste of Punjab with every bite, as the saying goes, "JO NA KRY MAA NA KRY PYO, O KARY SAVOUR DA DESI KYO."', 2500.00, 0, 'Premium', 1, 1);
