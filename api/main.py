@@ -20,6 +20,7 @@ from .config import get_settings
 from .database import get_db
 from .routers import menu as menu_router
 from .routers import orders as orders_router
+from .routers import agent as agent_router
 
 
 # ─────────────────────────────────────────────────────────────
@@ -133,6 +134,7 @@ A fully normalized food-ordering backend built on Supabase (PostgreSQL).
     API_PREFIX = "/api/v1"
     app.include_router(menu_router.router,   prefix=API_PREFIX)
     app.include_router(orders_router.router, prefix=API_PREFIX)
+    app.include_router(agent_router.router,  prefix=API_PREFIX)
 
     logger.info(
         "Routes registered — menu prefix: %s/menu | orders prefix: %s/orders",
