@@ -82,7 +82,7 @@ CREATE TABLE dishes (
     tag             VARCHAR(100),   -- e.g. "Best Seller", "Premium"
     status          SMALLINT      NOT NULL DEFAULT 1,
     availability    SMALLINT      NOT NULL DEFAULT 1
-)
+);
 
 -- New Arrivals
 INSERT INTO dishes VALUES (1910616, 63928, 90068, 'Khara Desi Kyo (Ghee)', 'Savor the authentic taste of Punjab with every bite, as the saying goes, "JO NA KRY MAA NA KRY PYO, O KARY SAVOUR DA DESI KYO."', 2500.00, 0, 'Premium', 1, 1);
@@ -520,6 +520,7 @@ CREATE TABLE orders (
     delivery_fee     NUMERIC(10,2) NOT NULL DEFAULT 0,
     discount         NUMERIC(10,2) NOT NULL DEFAULT 0,
     total_amount     NUMERIC(12,2) NOT NULL DEFAULT 0,   -- subtotal + delivery_fee - discount
+    instructions     TEXT,                               -- customer instructions
     notes            TEXT,                               -- special instructions
     created_at       TIMESTAMPTZ   NOT NULL DEFAULT NOW(),
     updated_at       TIMESTAMPTZ   NOT NULL DEFAULT NOW()
@@ -607,6 +608,7 @@ SELECT
     o.delivery_fee,
     o.discount,
     o.total_amount,
+    o.instructions,
     o.notes           AS order_notes,
     o.created_at,
     oi.id             AS item_id,

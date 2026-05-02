@@ -74,6 +74,7 @@ class OrderCreateRequest(BaseModel):
     payment_method:   PaymentMethodEnum = Field(PaymentMethodEnum.cash)
     delivery_fee:     Decimal        = Field(Decimal("0"), ge=0)
     discount:         Decimal        = Field(Decimal("0"), ge=0)
+    instructions:     Optional[str]  = None
     notes:            Optional[str]  = None
     items:            list[OrderItemIn] = Field(..., min_length=1)
 
@@ -119,6 +120,7 @@ class OrderResponse(BaseModel):
     delivery_fee:     Decimal
     discount:         Decimal
     total_amount:     Decimal
+    instructions:     Optional[str] = None
     notes:            Optional[str] = None
     created_at:       datetime
     updated_at:       datetime

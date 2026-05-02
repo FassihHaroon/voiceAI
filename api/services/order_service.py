@@ -229,6 +229,7 @@ def create_order(order_in: OrderCreateRequest, db: Client) -> dict:
             "discount":         float(discount),
             "subtotal":         float(subtotal),
             "total_amount":     float(total_amount),
+            "instructions":     order_in.instructions,
             "notes":            order_in.notes,
             "status":           "pending",
             "payment_status":   "unpaid",
@@ -271,7 +272,7 @@ def get_orders(
                 "id, customer_name, customer_phone, customer_address, "
                 "order_type, status, payment_method, payment_status, "
                 "subtotal, delivery_fee, discount, total_amount, "
-                "notes, created_at, updated_at",
+                "instructions, notes, created_at, updated_at",
                 count="exact",
             )
             .order("created_at", desc=True)
@@ -406,7 +407,7 @@ def _get_order_with_items(order_id: str, db: Client) -> dict:
             "id, customer_name, customer_phone, customer_address, "
             "order_type, status, payment_method, payment_status, "
             "subtotal, delivery_fee, discount, total_amount, "
-            "notes, created_at, updated_at"
+            "instructions, notes, created_at, updated_at"
         )
         .eq("id", order_id)
         .execute()
